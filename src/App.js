@@ -6,7 +6,6 @@ import Confetti from 'react-confetti'
 function App() {  
   const [diceArray, setDiceArray] = useState(allNewDice());
   const [tenzies, setTenzies] = useState(false);
-  const [rolls, setRolls] = useState(0);
 
   useEffect(()=> {
     const allHeld = diceArray.every(item => item.isHeld);
@@ -16,10 +15,6 @@ function App() {
     if (allHeld && allSameValue)
     {
       setTenzies(true);
-      if (allRollsArray.length < maxRollsStored)
-      {
-        allRollsArray.push(rolls)
-      }
     }
   }, [diceArray])
 
@@ -49,7 +44,6 @@ function App() {
           return item.isHeld ? item : generateNewDie();
         })
       )
-      setRolls(prevValue => prevValue + 1);
     } else 
     {
       setTenzies(false);
