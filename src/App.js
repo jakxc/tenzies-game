@@ -1,25 +1,25 @@
-import { useState, useEffect } from "react";
+import './App.css'
 import Die from "./components/Die"
+import { useLocalStorage } from './hooks/useLocalStorage';
+import { useEffect } from "react";
 import {nanoid} from 'nanoid';
 import Confetti from 'react-confetti'
 
 function App() {  
-  const [diceArray, setDiceArray] = useState(allNewDice());
-  const [tenzies, setTenzies] = useState(false);
+  const [diceArray, setDiceArray] = useLocalStorage('dices-key', allNewDice());
+  const [tenzies, setTenzies] = useLocalStorage('tenzie-key', false);
 
   useEffect(()=> {
     const allHeld = diceArray.every(item => item.isHeld);
     const firstValue = diceArray[0].value;
     const allSameValue = diceArray.every(item => item.value === firstValue);
     
-    if (allHeld && allSameValue)
-    {
+    if (allHeld && allSameValue) {
       setTenzies(true);
     }
   }, [diceArray])
 
-  function generateNewDie()
-  {
+  function generateNewDie() {
     return {
       id: nanoid(),
       value: Math.ceil(Math.random() * 6), 
@@ -30,31 +30,26 @@ function App() {
   function allNewDice() {
     const newDice = []
     for (let i = 0; i < 10; i++) {
-        newDice.push(generateNewDie())
+      newDice.push(generateNewDie())
     }
     return newDice
   }
 
-  function rollDice()
-  {
-    if (!tenzies)
-    {
+  function rollDice() {
+    if (!tenzies) {
       setDiceArray(prevArray => prevArray.map(item => 
         {
           return item.isHeld ? item : generateNewDie();
         })
       )
-    } else 
-    {
+    } else {
       setTenzies(false);
       setDiceArray(allNewDice());
     }
   }
 
-  function holdDice(id)
-  {
-    setDiceArray(prevArray => prevArray.map(item => 
-      {
+  function holdDice(id) {
+    setDiceArray(prevArray => prevArray.map(item => {
         return item.id === id ? 
         {...item, isHeld: !item.isHeld} : item
       })

@@ -46,7 +46,12 @@ main {
     padding: 5px;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
     border-radius: 10px;
+    cursor: pointer;
 }
+
+.dice:hover {
+    opacity: 90%;
+} 
 
 .dot {
     display: block;
@@ -76,9 +81,9 @@ main {
     justify-content: space-between;
 }
   
-  .third-face .dot:nth-of-type(1) {
+.third-face .dot:nth-of-type(1) {
     align-self :flex-end;
-  }
+}
   
 .third-face .dot:nth-of-type(2) {
     align-self :center;
@@ -113,6 +118,10 @@ main {
 
 .button-roll:focus {
     outline: none;
+}
+
+.button-roll:hover{
+    opacity: 90%;
 }
 
 .button-roll:active {
