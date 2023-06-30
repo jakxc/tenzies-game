@@ -1,9 +1,10 @@
-import React from "react";
+import './index.css'
 
-function Die(props) {
+const Die = (props) => {
     const styles = {
-        backgroundColor: props.isHeld ? "#59E391" : "tomato"
+        backgroundColor: props.isHeld ? "#59E391" : "#f94e4e"
     }
+
     return (
         <>
             {props.value === 1 &&
@@ -68,7 +69,7 @@ function Die(props) {
                     <div class="column">
                         <span class="dot"></span>
                         <span class="dot"></span>
-                            <span class="dot"></span>
+                        <span class="dot"></span>
                     </div>
                 </div>
             }

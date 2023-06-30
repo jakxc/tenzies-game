@@ -1,5 +1,6 @@
-import './App.css'
-import Die from "./components/Die"
+import Header from './components/Header';
+import Die from "./components/Dice";
+import Footer from './components/Footer';
 import { useLocalStorage } from './hooks/useLocalStorage';
 import { useEffect } from "react";
 import {nanoid} from 'nanoid';
@@ -65,18 +66,20 @@ function App() {
   />)
 
   return (
-    <main>
-      {tenzies && <Confetti />}
-      <h1 className="title">Tenzies</h1>
-        <p className="instructions">Roll until all dice are the same. 
-        Click each die to freeze it at its current value between rolls.</p>
-      <div className="dice-container">
-        {diceElements}
-      </div>
-      <button 
-        className="button-roll" 
-        onClick={rollDice}>{tenzies ? "New Game" : "Roll"}</button>
-    </main>
+    <>
+      <main>
+        {tenzies && <Confetti />}
+        <Header />
+        <div className="dice-container">
+          {diceElements}
+        </div>
+        <button 
+          className="button-roll" 
+          onClick={rollDice}>{tenzies ? "New Game" : "Roll"}
+        </button>
+      </main>
+      <Footer />
+    </>
   );
 }
 
